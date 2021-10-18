@@ -1,0 +1,80 @@
+<div class="container">
+        <div *ngIf="prevAnswered.length < 11">
+        <p class="text-center">{{ prevAnswered.length }} of {{ quizzes.length }}</p>
+        <h1>{{ quizzes[currentQuiz].question }}</h1>
+
+  <div class="answers" >
+    <ul class="answers__list" *ngFor="let quiz of quizzes[currentQuiz].answer" >
+        <label><li @answer class="answers__item" appBackground [correctAnswer]="quiz.correct">
+            <input  type="radio" name="options" (change)="onAnswer(quiz.correct)" [disabled]="answerSelected">
+            {{ quiz.option }}
+        </li></label>
+      </ul>
+  </div>
+        
+        </div>
+
+
+        <div *ngIf="prevAnswered.length > 10">
+        <button class="btn" (click)="showResult()" *ngIf="resultStatus === 'Show Result'">{{ resultStatus }}</button>
+        <button class="btn btn--new" (click)="playAgain()" *ngIf="resultStatus !== 'Show Result'">{{ resultStatus }}</button>
+        <div *ngIf="result">
+          <br>
+          <p style="color:green">Correct Answers: {{ correctAnswers }}</p> <p style="color:red">Inocrrect Answers: {{ incorrectAnswers }}</p>
+          <br><br>
+          <table border="1">
+            <thead>
+              <tr>
+                <th scope="col">Question</th>
+                <th scope="col">Correct Answer</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>What is the longest that an elephant has ever lived?</td>
+                <td>86 years</td>
+              </tr>
+              <tr>
+                <td>How many rings are on the Olympic flag?</td>
+                <td>5</td>
+              </tr>
+              <tr>
+                <td>What is a tarsier</td>
+                <td>A Primate</td>
+              </tr>
+              <tr>
+                <td>How did Spider-Man get his powers</td>
+                <td>Bitten by a radioactive spider</td>
+              </tr>
+              <tr>
+                <td>In darts, what is the most points you can score with a single throw?</td>
+                <td>60</td>
+              </tr>
+              <tr>
+                <td>Which of these animals does NOT appear in the Chinese zodiac?</td>
+                <td>Bear</td>
+              </tr>
+              <tr>
+                <td>How many holes are on a standard bowling ball?</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <td>In the nursery rhyme, how many blackbirds were baked in a pie?</td>
+                <td>24</td>
+              </tr>
+              <tr>
+                <td>What is a pomelo?</td>
+                <td>The largest citrus fruit</td>
+              </tr>
+              <tr>
+                <td>What city is the capital of France?</td>
+                <td>Paris</td>
+              </tr>
+            </tbody>
+          </table>
+        
+        
+        </div>
+      </div>
+  </div>
+  
